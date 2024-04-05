@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "meshmobile-e0e6e": {
+      "hosting": {
+        "app": [
+          "meshmobile-e0e6e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "meshmobile-e0e6e"
+  }
+}
