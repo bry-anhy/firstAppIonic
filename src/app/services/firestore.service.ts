@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Song } from '../models/song.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +24,17 @@ export class FirestoreService {
         songDescription,
         songName
       });
+  }
+
+  /// The collectionData() method takes the current Firestore instance and a reference to the collection we’re looking for
+  /// It returns an observable list of the documents that match that query we’re sending.
+  /// * The idField property will bring the document’s ID inside of the object.
+  getSongList(): Observable<Song[]>{
+    const ref = collection(this.firestore, "songList");
+    const q = query(ref);  // query(ref, where("type", "==", "museum"));
+    const data = collectionData(q, {
+      idField: 'id',
+    });
+    return data as Observable<Song[]>;
   }
 }

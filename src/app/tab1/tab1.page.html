@@ -8,3 +8,13 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<!-- inside the <ion-content> we’ll loop over our list of songs to display all the songs in the database. -->
+<ion-content class="padding">
+  <ion-item *ngFor="let song of songList | async" routerLink="/detail/{{song.id}}">
+    <ion-label>
+      <h2>{{ song.songName}}</h2>
+      <p>Artist Name: {{ song.artistName }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>
