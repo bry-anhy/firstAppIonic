@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
+<!-- We’re passing the song’s ID as a navigation parameter 
+and we’re going to use that ID to fetch the song’s detail from the firestore database. 
+The first thing we’ll do is go to detail.page.html and create a basic view that displays all the data we have for our song
+-->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ song?.songName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <h3>Artist</h3>
+  <p>The song {{ song?.songName }} was released by {{ song?.artistName }}.</p>
+
+  <h3>Album</h3>
+  <p>It was part of the {{ song?.albumName }} album.</p>
+
+  <h3>Description</h3>
+  <p>{{ song?.songDescription }}</p>
+
+  <!-- Delete an item from the list
+  First, open detail.page.html and create the button, nothing too fancy, 
+  a regular button that calls the remove function will do, 
+  set it right before the closing ion content tag. -->
+  <ion-button expand="block" (click)="deleteSong(song?.id ?? '', song?.songName ?? '')">Delete song</ion-button>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, query} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Song } from '../models/song.interface';
 
@@ -36,5 +36,19 @@ export class FirestoreService {
       idField: 'id',
     });
     return data as Observable<Song[]>;
+  }
+
+  /// function get song by id
+  getSongDetail(songId: string): Observable<Song>{
+    const songRef = doc(this.firestore, `songList/${songId}`);
+
+    return docData(songRef, {idField: 'id'}) as Observable<Song>;
+  }
+
+  /// delete function
+  deleteSong(songId: string): Promise<void>{
+    const songDocRef = doc(this.firestore, `songList/${songId}`);
+
+    return deleteDoc(songDocRef);
   }
 }
