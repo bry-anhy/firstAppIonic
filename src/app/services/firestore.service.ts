@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, query} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, query, setDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Song } from '../models/song.interface';
 
@@ -12,18 +12,23 @@ export class FirestoreService {
   constructor(private readonly firestore:Firestore) { }
 
   /// write the createSong() function that takes all the parameters we sent from our form
-  createSong(
-    albumName: string,
-    artistName: string, 
-    songDescription: string, 
-    songName: string): Promise<DocumentReference>{
-      // Firestore service to call the function that will add the song to the database.
-      return addDoc(collection(this.firestore, "songList"), {
-        albumName,
-        artistName,
-        songDescription,
-        songName
-      });
+  // createSong(
+  //   albumName: string,
+  //   artistName: string, 
+  //   songDescription: string, 
+  //   songName: string): Promise<DocumentReference>{
+  //     // Firestore service to call the function that will add the song to the database.
+  //     return addDoc(collection(this.firestore, "songList"), {
+  //       albumName,
+  //       artistName,
+  //       songDescription,
+  //       songName
+  //     });
+  // }
+  createSong(song: Song): Promise<DocumentReference>{
+    // Firestore service to call the function that will add the song to the database.
+    const { id, ...data } = song;   
+    return addDoc(collection(this.firestore, "songList"), data);
   }
 
   /// The collectionData() method takes the current Firestore instance and a reference to the collection we’re looking for
@@ -50,5 +55,12 @@ export class FirestoreService {
     const songDocRef = doc(this.firestore, `songList/${songId}`);
 
     return deleteDoc(songDocRef);
+  }
+
+  /// edit function
+  editSong(song: Song): Promise<void> {
+    const songRef = doc(this.firestore, 'songList', song.id);
+    const { id, ...data } = song; // we don't want to save the id inside the document
+    return setDoc(songRef, data);
   }
 }

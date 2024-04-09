@@ -13,6 +13,12 @@ const routes: Routes = [
   {
     // edit the route for our detail page so that the URL takes a parameter
     // the song’s ID so that we can fetch the song from Firestore
+    path: 'edit/:id',
+    loadChildren: () => import('./pages/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    // edit the route for our detail page so that the URL takes a parameter
+    // the song’s ID so that we can fetch the song from Firestore
     path: 'detail/:id',
     loadChildren: () => import('./pages/detail/detail.module').then( m => m.DetailPageModule)
   }

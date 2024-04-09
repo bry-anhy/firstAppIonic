@@ -1,3 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Song</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <!-- [formGroup]="createSongForm" => This is the name of the form we’re creating.
 (submit)="createSong()" => This tells the form that on submit it should call the createSong() function.
 formControlName => This is the name of the field.
@@ -33,8 +42,11 @@ formControlName => This is the name of the field.
       </ion-textarea>
     </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="!createSongForm.valid">
+    <ion-button *ngIf="isAddMode" expand="block" type="submit" [disabled]="!createSongForm.valid">
       Add Song
+    </ion-button>
+    <ion-button *ngIf="!isAddMode" expand="block" type="submit" [disabled]="!createSongForm.valid">
+      Edit Song
     </ion-button>
   </form>
 </ion-content>

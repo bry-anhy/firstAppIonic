@@ -9,6 +9,12 @@ The first thing we’ll do is go to detail.page.html and create a basic view tha
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ song?.songName }}</ion-title>
+    <!-- add button edit -->
+    <ion-buttons slot="end">
+      <ion-button color="primary" *ngIf="song" [routerLink]="'/edit/' + song.id">
+        Edit
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
