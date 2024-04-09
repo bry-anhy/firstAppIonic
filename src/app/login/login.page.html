@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Just make sure that one button inside the form has the submit type and therefore triggers 
+the ngSubmit action, while the other has the type button if it should just trigger it’s connected click event! -->
+<ion-content class="ion-padding">
+  <form [formGroup]="credentialsForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+      <ion-note slot="error" *ngIf="(email?.dirty || email?.touched) && email?.errors">
+        Email is invalid
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">
+        Password needs to be 6 characters
+      </ion-note>
+    </ion-item>
+
+    <ion-button type="submit" aria-expanded="block" [disabled]="!credentialsForm.valid">
+      Login
+    </ion-button>
+    <ion-button type="button" aria-expanded="block" color="secondary" (click)="register()">
+      Register
+    </ion-button>
+  </form>
+</ion-content>
