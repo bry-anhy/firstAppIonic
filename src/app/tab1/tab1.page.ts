@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../serivces/auth.service';
+import { AuthService } from '../services/auth.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
