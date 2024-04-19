@@ -20,7 +20,11 @@ const routes: Routes = [
   {
     path: 'details/:id',  // <-- Add the :id parameter
     loadChildren: () => import('./details/details/details.module').then( m => m.DetailsPageModule)
+  },  {
+    path: 'home-defer',
+    loadChildren: () => import('./home-defer/home-defer/home-defer.module').then( m => m.HomeDeferPageModule)
   },
+
 
 ];
 @NgModule({
