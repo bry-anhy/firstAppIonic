@@ -14,6 +14,14 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home/home.module').then( m => m.HomePageModule)
   },
+  // Working with Signals
+  // In the beginning, the CLI automatically changed our routing, 
+  // but we need to include the :id parameter manually now.
+  {
+    path: 'details/:id',  // <-- Add the :id parameter
+    loadChildren: () => import('./details/details/details.module').then( m => m.DetailsPageModule)
+  },
+
 ];
 @NgModule({
   imports: [
