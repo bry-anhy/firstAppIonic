@@ -1,1 +1,28 @@
 "# firstAppIonic" 
+
+
+https://github.com/ionic-team/ionic-conference-app
+This application is purely a kitchen-sink demo of the Ionic Framework and Angular.
+There is not an actual Ionic Conference at this time. 
+This project is just to show off Ionic components in a real-world application
+
+1. Service worker
+https://angular.io/guide/service-worker-getting-started#cli-command
+https://blog.angular-university.io/angular-service-worker/
+ng add @angular/pwa
+   Note: 
+      SwUpdate for managing application version updates
+      SwPush for doing server Web Push notifications
+
+
+https://www.npmjs.com/package/@ionic/storage-angular
+npm i @ionic/storage-angular --force
+
+Deploying
+Progressive Web App
+    Run ionic build --prod
+    Push the www folder to your hosting service
+Android
+    Run ionic cordova run android --prod
+iOS
+    Run ionic cordova run ios --prod
