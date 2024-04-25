@@ -20,25 +20,40 @@ export class TutorialPage implements OnInit {
   ngOnInit() {
   }
 
+  /// *
+  /// Event startApp
+  ///   + Navigate by url to schedule page
+  ///   + Set flag ion_did_tutorial is true (success)
+  /// *
   startApp() {
     this.router
       .navigateByUrl('/app/tabs/schedule', { replaceUrl: true })
       .then(() => this.storage.set('ion_did_tutorial', true));
   }
 
-  // ionViewWillEnter() {
-  //   this.storage.get('ion_did_tutorial').then(res => {
-  //     if (res === true) {
-  //       this.router.navigateByUrl('/app/tabs/schedule', { replaceUrl: true });
-  //     }
-  //   });
+  /// *
+  /// ref: https://ionicframework.com/docs/angular/lifecycle
+  /// Life cycle app: ionViewWillEnter
+  ///   + Navigate by url to schedule page (when ion_did_tutorial is true)
+  /// note: auto navigate schedule page when user has finished readding the instructions (tutorial), 
+  /// *
+  ionViewWillEnter() {
+    this.storage.get('ion_did_tutorial').then(res => {
+      if (res === true) {
+        this.router.navigateByUrl('/app/tabs/schedule', { replaceUrl: true });
+      }
+    });
 
-  //   this.menu.enable(false);
-  // }
+    this.menu.enable(false);
+  }
 
-  // ionViewDidLeave() {
-  //   // enable the root left menu when leaving the tutorial page
-  //   this.menu.enable(true);
-  // }
+  /// *
+  /// Life cycle app: ionViewDidLeave
+  ///   + Navigate by url to schedule page (when ion_did_tutorial is true)
+  /// *
+  ionViewDidLeave() {
+    // enable the root left menu when leaving the tutorial page
+    this.menu.enable(true);
+  }
 
 }
