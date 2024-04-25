@@ -18,6 +18,18 @@ ng add @angular/pwa
 https://www.npmjs.com/package/@ionic/storage-angular
 npm i @ionic/storage-angular --force
 
+
+2. Create
+  providers/user-data.service.ts
+      ionic g service providers/user-data
+  pages/tutorial
+      ionic g page pages/tutorial
+  pages/tabs-page
+      ionic g page pages/tabs-page
+  pages/schedule
+      ionic g page pages/schedule
+
+----------------------------------------------------------------------
 Deploying
 Progressive Web App
     Run ionic build --prod
@@ -26,3 +38,4 @@ Android
     Run ionic cordova run android --prod
 iOS
     Run ionic cordova run ios --prod
+----------------------------------------------------------------------
