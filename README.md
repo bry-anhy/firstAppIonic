@@ -28,6 +28,8 @@ npm i @ionic/storage-angular --force
       ionic g page pages/tabs-page
   pages/schedule
       ionic g page pages/schedule
+  providers/check-tutorial.guard
+      ionic g service providers/check-tutorial.guard
 
 ----------------------------------------------------------------------
 Deploying
